@@ -1,170 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Happy Birthday ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Happy Birthday Janab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ffd6e8, #ffeef5);
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Georgia', serif;
+}
 
-    /* START SCREEN */
-    #startScreen {
-      text-align: center;
-      animation: zoomIn 1.5s ease forwards;
-    }
+body {
+background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+overflow: hidden;
+text-align: center;
+}
 
-    #startBtn {
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 30px;
-      background: #ff2f6d;
-      color: white;
-      cursor: pointer;
-    }
+/* SCENES */
+.scene {
+position: absolute;
+width: 100%;
+height: 100%;
+display: none;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
 
-    /* MAIN CARD */
-    #card {
-      display: none;
-      background: white;
-      border-radius: 20px;
-      width: 80%;
-      max-width: 900px;
-      padding: 30px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      animation: zoomIn 1s ease forwards;
-    }
+.scene.active {
+display: flex;
+}
 
-    .content {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
+/* BALLOONS */
+.balloon {
+position: absolute;
+bottom: -150px;
+width: 60px;
+height: 80px;
+border-radius: 50%;
+animation: float 8s linear infinite;
+}
 
-    .photo img {
-      width: 250px;
-      border-radius: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      animation: fadeIn 1.5s ease forwards;
-    }
+.balloon::after {
+content: '';
+position: absolute;
+width: 2px;
+height: 40px;
+background: #555;
+left: 50%;
+top: 80px;
+}
 
-    .message {
-      flex: 1;
-      font-size: 16px;
-      line-height: 1.6;
-    }
+@keyframes float {
+from { transform: translateY(0); }
+to { transform: translateY(-120vh); }
+}
 
-    .message b {
-      display: block;
-      margin-top: 15px;
-    }
+/* TEXT */
+.title {
+font-size: 3rem;
+font-style: italic;
+color: #b30059;
+margin-bottom: 20px;
+}
 
-    .kiss-btn {
-      margin-top: 25px;
-      padding: 14px 26px;
-      background: #ff2f6d;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+button {
+padding: 15px 30px;
+font-size: 1.1rem;
+border: none;
+border-radius: 30px;
+background: #ff3366;
+color: white;
+cursor: pointer;
+}
 
-    /* HEART */
-    #heart {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: #ff0033;
-      color: white;
-      font-size: 60px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: zoomIn 1s ease forwards;
-    }
+/* ZOOM */
+.zoom {
+animation: zoomIn 1.2s forwards;
+}
 
-    /* ANIMATIONS */
-    @keyframes zoomIn {
-      from { transform: scale(0.6); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+@keyframes zoomIn {
+from { transform: scale(1); }
+to { transform: scale(1.1); }
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-  </style>
+/* SCENE 2 */
+.content {
+display: flex;
+gap: 30px;
+align-items: center;
+}
+
+.content img {
+width: 250px;
+border-radius: 20px;
+}
+
+.message {
+max-width: 350px;
+font-size: 1.1rem;
+}
+
+/* CAKE */
+.cake {
+width: 200px;
+height: 120px;
+background: #ff9999;
+border-radius: 10px;
+position: relative;
+margin-bottom: 20px;
+}
+
+.candle {
+width: 8px;
+height: 30px;
+background: yellow;
+position: absolute;
+top: -30px;
+animation: flicker 0.5s infinite alternate;
+}
+
+@keyframes flicker {
+from { opacity: 1; }
+to { opacity: 0.5; }
+}
+
+/* KNIFE */
+.knife {
+width: 120px;
+height: 10px;
+background: silver;
+animation: cut 2s forwards;
+margin-bottom: 20px;
+}
+
+@keyframes cut {
+from { transform: translateX(-200px); }
+to { transform: translateX(200px); }
+}
+
+/* CONFETTI */
+.confetti {
+position: absolute;
+width: 10px;
+height: 10px;
+background: red;
+animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+from { top: -10px; }
+to { top: 110vh; }
+}
+
+.final-text {
+font-size: 3rem;
+color: #b30000;
+}
+</style>
 </head>
+
 <body>
 
-  <!-- START SCREEN -->
-  <div id="startScreen">
-    <button id="startBtn">Start Your Birthday 🎉</button>
-  </div>
+<!-- MUSIC -->
+<audio id="music" src="song.mp3" autoplay></audio>
 
-  <!-- MAIN CARD -->
-  <div id="card">
-    <div class="content">
-      <div class="photo">
-        <img src="photo.jpg" alt="Birthday Photo">
-      </div>
+<!-- SCENE 1 -->
+<div class="scene active" id="scene1">
+<div class="title">Happy Birthday Janab</div>
+<button onclick="startBirthday()">Start Your Birthday</button>
+</div>
 
-      <div class="message">
-        May you live a long life. May Allah give you everything you want.
-        I wish this year fills your heart with happiness and love.
-        Even if I’m not there right now, I’m always here for you.
-        I’ll listen to your problems and we’ll solve every one together.
+<!-- SCENE 2 -->
+<div class="scene" id="scene2">
+<div class="content">
+<img src="photo.jpg">
+<div class="message">
+May you live a long life. May Allah give you everything you want.
+I wish this year fills your heart with happiness and love.
+Even if I’m not there right now, I’m always here for you.
+<br><br>
+Your cousin (and someone special)<br>— Hassaan
+<br><br>
+<button onclick="showCake()">Give him a kiss as a thanks 💋</button>
+</div>
+</div>
+</div>
 
-        <br><br>
-        Maybe I should thank Allah for giving me such a beautiful friend and love.
+<!-- SCENE 3 -->
+<div class="scene" id="scene3">
+<div class="cake">
+<div class="candle" style="left:30px"></div>
+<div class="candle" style="left:90px"></div>
+<div class="candle" style="left:150px"></div>
+</div>
+<div class="knife"></div>
+<div class="final-text">HAPPY 17TH BIRTHDAY 🎉</div>
+</div>
 
-        <b>Your cousin (and someone special)</b>
-        — Hassaan
+<script>
+// BALLOONS
+for (let i = 0; i < 12; i++) {
+let b = document.createElement("div");
+b.className = "balloon";
+b.style.left = Math.random() * 100 + "vw";
+b.style.background = `hsl(${Math.random()*360},80%,70%)`;
+b.style.animationDuration = (6 + Math.random()*4) + "s";
+document.body.appendChild(b);
+}
 
-        <br>
-        <button class="kiss-btn" onclick="showHeart()">
-          Give him a kiss as a thanks 💋
-        </button>
-      </div>
-    </div>
-  </div>
+// CONFETTI
+function confetti() {
+for (let i = 0; i < 40; i++) {
+let c = document.createElement("div");
+c.className = "confetti";
+c.style.left = Math.random() * 100 + "vw";
+c.style.background = `hsl(${Math.random()*360},100%,50%)`;
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+}
 
-  <!-- HEART SCREEN -->
-  <div id="heart">
-    ❤️ SUMAIKA ❤️
-  </div>
+function startBirthday() {
+document.getElementById("scene1").classList.remove("active");
+document.getElementById("scene2").classList.add("active");
+document.getElementById("scene2").classList.add("zoom");
+}
 
-  <!-- MUSIC (optional) -->
-  <audio id="song" src="song.mp3"></audio>
-
-  <script>
-    const startBtn = document.getElementById("startBtn");
-    const startScreen = document.getElementById("startScreen");
-    const card = document.getElementById("card");
-    const song = document.getElementById("song");
-
-    startBtn.onclick = () => {
-      startScreen.style.display = "none";
-      card.style.display = "block";
-      song.play().catch(()=>{});
-    };
-
-    function showHeart() {
-      document.getElementById("heart").style.display = "flex";
-    }
-  </script>
+function showCake() {
+document.getElementById("scene2").classList.remove("active");
+document.getElementById("scene3").classList.add("active");
+confetti();
+}
+</script>
 
 </body>
 </html>
