@@ -2,82 +2,91 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Sumaika 💖</title>
+<title>Happy Birthday 💖</title>
 
 <style>
 body {
   margin: 0;
-  height: 100vh;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
-  color: white;
 }
 
-/* Book */
-.book {
-  width: 300px;
-  height: 400px;
-  position: relative;
-  perspective: 1200px;
-}
-
-.cover {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: black;
-  border: 2px solid gold;
-  transform-origin: left;
-  animation: openBook 3s ease forwards;
+/* START SCREEN */
+.start-screen {
+  background: pink;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
-.cover h1 {
+.start-screen h1 {
+  font-size: 40px;
+  color: #b30059;
+}
+
+.start-screen button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background: #ff2d55;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.start-screen button:hover {
+  transform: scale(1.05);
+}
+
+/* MAIN BIRTHDAY PAGE */
+.main {
+  display: none;
+  background: black;
+  color: white;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.card {
+  background: #111;
+  border: 2px solid gold;
+  border-radius: 20px;
+  width: 340px;
+  padding: 25px;
+  text-align: center;
+  z-index: 2;
+}
+
+.name {
+  font-size: 36px;
   color: gold;
-  font-size: 32px;
   letter-spacing: 2px;
+  text-shadow: 0 0 15px gold;
 }
 
-.page {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: white;
-  color: black;
-  padding: 20px;
-  box-sizing: border-box;
-  opacity: 0;
-  animation: showPage 3s ease forwards;
-  animation-delay: 3s;
-  overflow-y: auto;
-}
-
-@keyframes openBook {
-  to { transform: rotateY(-160deg); }
-}
-
-@keyframes showPage {
-  to { opacity: 1; }
+p {
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 /* Heart */
 .heart-box {
   margin: 20px auto;
-  width: 100px;
-  height: 100px;
-  position: relative;
+  width: 90px;
+  height: 90px;
 }
 
 .heart {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   transform: rotate(-45deg);
 }
 
@@ -85,45 +94,46 @@ body {
 .heart::after {
   content: "";
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   background: #ff2d55;
   border-radius: 50%;
 }
 
-.heart::before { top: -50px; left: 0; }
-.heart::after { left: 50px; top: 0; }
+.heart::before { top: -45px; left: 0; }
+.heart::after { left: 45px; top: 0; }
 
 .fill {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   background: #ff2d55;
-  top: 100px;
-  animation: fillUp 3s infinite ease-in-out;
+  top: 90px;
+  animation: fillUp 2.5s infinite ease-in-out;
 }
 
 .mask {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   overflow: hidden;
 }
 
 @keyframes fillUp {
-  0% { top: 100px; }
+  0% { top: 90px; }
   50% { top: 0; }
-  100% { top: 100px; }
+  100% { top: 90px; }
 }
 
 /* Balloons */
 .balloon {
   position: absolute;
   bottom: -120px;
-  width: 40px;
-  height: 55px;
+  width: 30px;
+  height: 45px;
   border-radius: 50%;
-  animation: floatUp 10s linear infinite;
+  opacity: 0.7;
+  animation: floatUp 12s linear infinite;
 }
 
 @keyframes floatUp {
@@ -134,26 +144,32 @@ body {
 
 <body>
 
-<div class="book">
-  <div class="cover">
-    <h1>Sumaika</h1>
-  </div>
+<!-- START SCREEN -->
+<div class="start-screen" id="start">
+  <h1>Happy Birthday Janab ❤️</h1>
+  <button onclick="startBirthday()">Start your birthday 🎉</button>
+</div>
 
-  <div class="page">
-    <h2>🎉 HAPPY 17th BIRTHDAY CUZ 🎂</h2>
+<!-- MAIN PAGE -->
+<div class="main" id="main">
+  <div class="card">
+    <div class="name">Sumaika</div>
+    <h3>🎉 Happy 17th Birthday 🎂</h3>
+
     <p>
-      May you live a long life.  
-      May Allah give you everything you want.  
-      I wish this year fills your heart with happiness and love.  
-      I may not be there at this point, but I am always here for you.  
-      I can listen to your problems, and I promise we will solve every single one together.
+      HAPPY BIRTHDAY CUZ 💖<br><br>
+      May you live a long life. May Allah give you everything you want.
+      I wish this year fills your heart with happiness and love.
+      Even if I’m not there right now, I’m always here for you.
+      I’ll listen to your problems and we’ll solve every one together.
     </p>
+
     <p>
       Maybe I should thank Allah for giving me such a beautiful friend and love.
     </p>
-    <p><strong>HAPPY BIRTHDAY 💖</strong></p>
-    <p>Your cousin (and someone special)</p>
-    <p><strong>— Hassaan</strong></p>
+
+    <p><strong>Your cousin (and someone special)</strong><br>
+    <strong>— Hassaan</strong></p>
 
     <div class="heart-box">
       <div class="heart">
@@ -166,14 +182,19 @@ body {
 </div>
 
 <script>
-// Balloons
-for (let i = 0; i < 15; i++) {
-  let b = document.createElement("div");
-  b.className = "balloon";
-  b.style.left = Math.random() * 100 + "vw";
-  b.style.background = `hsl(${Math.random()*360},80%,60%)`;
-  b.style.animationDuration = (6 + Math.random()*6) + "s";
-  document.body.appendChild(b);
+function startBirthday() {
+  document.getElementById("start").style.display = "none";
+  document.getElementById("main").style.display = "flex";
+
+  // Balloons
+  for (let i = 0; i < 12; i++) {
+    let b = document.createElement("div");
+    b.className = "balloon";
+    b.style.left = Math.random() * 100 + "vw";
+    b.style.background = `hsl(${Math.random()*360},70%,60%)`;
+    b.style.animationDuration = (8 + Math.random()*6) + "s";
+    document.body.appendChild(b);
+  }
 }
 </script>
 
