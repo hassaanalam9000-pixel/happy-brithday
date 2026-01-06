@@ -2,202 +2,225 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday 💖</title>
+<title>Happy Birthday Janab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  overflow: hidden;
+  background: linear-gradient(135deg, #ffd1dc, #ffe6f0);
+  overflow-x: hidden;
 }
 
-/* START SCREEN */
-.start-screen {
-  background: pink;
-  height: 100vh;
+/* Center screen */
+.screen {
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   text-align: center;
 }
 
-.start-screen h1 {
-  font-size: 40px;
-  color: #b30059;
+/* First screen */
+h1 {
+  font-size: 3rem;
+  color: #c2185b;
 }
 
-.start-screen button {
-  margin-top: 20px;
-  padding: 15px 30px;
-  font-size: 18px;
+.start-btn {
+  margin-top: 30px;
+  padding: 14px 35px;
+  font-size: 1.1rem;
   border: none;
   border-radius: 30px;
-  background: #ff2d55;
+  cursor: pointer;
+  background: #c2185b;
+  color: white;
+}
+
+/* Zoom effect */
+.zoom {
+  animation: zoomIn 1.2s ease forwards;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Reveal section */
+.reveal {
+  display: none;
+  padding: 40px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo img {
+  width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.message {
+  max-width: 500px;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  color: #444;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.message p {
+  line-height: 1.6;
+}
+
+/* Kiss button */
+.kiss-btn {
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background: #e91e63;
   color: white;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.start-screen button:hover {
-  transform: scale(1.05);
-}
-
-/* MAIN BIRTHDAY PAGE */
-.main {
-  display: none;
-  background: black;
-  color: white;
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.card {
-  background: #111;
-  border: 2px solid gold;
-  border-radius: 20px;
-  width: 340px;
-  padding: 25px;
-  text-align: center;
-  z-index: 2;
-}
-
-.name {
-  font-size: 36px;
-  color: gold;
-  letter-spacing: 2px;
-  text-shadow: 0 0 15px gold;
-}
-
-p {
-  font-size: 15px;
-  line-height: 1.5;
 }
 
 /* Heart */
-.heart-box {
-  margin: 20px auto;
-  width: 90px;
-  height: 90px;
+.heart-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .heart {
+  width: 220px;
+  height: 200px;
+  background: red;
   position: relative;
-  width: 90px;
-  height: 90px;
   transform: rotate(-45deg);
+  animation: pop 1s ease forwards;
 }
 
 .heart::before,
 .heart::after {
   content: "";
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  background: #ff2d55;
+  width: 220px;
+  height: 200px;
+  background: red;
   border-radius: 50%;
-}
-
-.heart::before { top: -45px; left: 0; }
-.heart::after { left: 45px; top: 0; }
-
-.fill {
   position: absolute;
-  width: 90px;
-  height: 90px;
-  background: #ff2d55;
-  top: 90px;
-  animation: fillUp 2.5s infinite ease-in-out;
 }
 
-.mask {
+.heart::before {
+  top: -110px;
+  left: 0;
+}
+
+.heart::after {
+  left: 110px;
+  top: 0;
+}
+
+.heart-text {
   position: absolute;
-  width: 90px;
-  height: 90px;
-  overflow: hidden;
+  transform: rotate(45deg);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-@keyframes fillUp {
-  0% { top: 90px; }
-  50% { top: 0; }
-  100% { top: 90px; }
-}
-
-/* Balloons */
-.balloon {
-  position: absolute;
-  bottom: -120px;
-  width: 30px;
-  height: 45px;
-  border-radius: 50%;
-  opacity: 0.7;
-  animation: floatUp 12s linear infinite;
-}
-
-@keyframes floatUp {
-  to { transform: translateY(-120vh); }
+@keyframes pop {
+  from {
+    transform: scale(0) rotate(-45deg);
+  }
+  to {
+    transform: scale(1) rotate(-45deg);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- START SCREEN -->
-<div class="start-screen" id="start">
-  <h1>Happy Birthday Janab ❤️</h1>
-  <button onclick="startBirthday()">Start your birthday 🎉</button>
+<!-- First Screen -->
+<div class="screen" id="startScreen">
+  <h1>🎉 Happy Birthday Janab 🎉</h1>
+  <button class="start-btn" onclick="startBirthday()">Start Your Birthday</button>
 </div>
 
-<!-- MAIN PAGE -->
-<div class="main" id="main">
-  <div class="card">
-    <div class="name">Sumaika</div>
-    <h3>🎉 Happy 17th Birthday 🎂</h3>
-
-    <p>
-      HAPPY BIRTHDAY CUZ 💖<br><br>
-      May you live a long life. May Allah give you everything you want.
-      I wish this year fills your heart with happiness and love.
-      Even if I’m not there right now, I’m always here for you.
-      I’ll listen to your problems and we’ll solve every one together.
-    </p>
-
-    <p>
-      Maybe I should thank Allah for giving me such a beautiful friend and love.
-    </p>
-
-    <p><strong>Your cousin (and someone special)</strong><br>
-    <strong>— Hassaan</strong></p>
-
-    <div class="heart-box">
-      <div class="heart">
-        <div class="mask">
-          <div class="fill"></div>
-        </div>
-      </div>
+<!-- Reveal Screen -->
+<div class="reveal zoom" id="revealScreen">
+  <div class="content">
+    <div class="photo">
+      <img src="photo.jpg" alt="Birthday Photo">
     </div>
+
+    <div class="message">
+      <p>
+        May you live a long life. May Allah give you everything you want.
+        I wish this year fills your heart with happiness and love.
+        Even if I’m not there right now, I’m always here for you.
+        I’ll listen to your problems and we’ll solve every one together.
+      </p>
+
+      <p>
+        Maybe I should thank Allah for giving me such a beautiful friend and love.
+      </p>
+
+      <p>
+        <strong>Your cousin (and someone special)</strong><br>
+        — Hassaan
+      </p>
+
+      <button class="kiss-btn" onclick="showHeart()">Give him a kiss as a thanks 💋</button>
+    </div>
+  </div>
+</div>
+
+<!-- Heart Screen -->
+<div class="heart-container" id="heartScreen">
+  <div class="heart">
+    <div class="heart-text">Sumaika</div>
   </div>
 </div>
 
 <script>
 function startBirthday() {
-  document.getElementById("start").style.display = "none";
-  document.getElementById("main").style.display = "flex";
+  document.getElementById("startScreen").style.display = "none";
+  document.getElementById("revealScreen").style.display = "block";
+}
 
-  // Balloons
-  for (let i = 0; i < 12; i++) {
-    let b = document.createElement("div");
-    b.className = "balloon";
-    b.style.left = Math.random() * 100 + "vw";
-    b.style.background = `hsl(${Math.random()*360},70%,60%)`;
-    b.style.animationDuration = (8 + Math.random()*6) + "s";
-    document.body.appendChild(b);
-  }
+function showHeart() {
+  document.getElementById("revealScreen").style.display = "none";
+  document.getElementById("heartScreen").style.display = "flex";
 }
 </script>
 
 </body>
 </html>
-?v=2
