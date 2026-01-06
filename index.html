@@ -1,226 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Happy Birthday Janab</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Happy Birthday ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-* {
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffd6e8, #ffeef5);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-body {
-  margin: 0;
-  background: linear-gradient(135deg, #ffd1dc, #ffe6f0);
-  overflow-x: hidden;
-}
+    /* START SCREEN */
+    #startScreen {
+      text-align: center;
+      animation: zoomIn 1.5s ease forwards;
+    }
 
-/* Center screen */
-.screen {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-}
+    #startBtn {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      background: #ff2f6d;
+      color: white;
+      cursor: pointer;
+    }
 
-/* First screen */
-h1 {
-  font-size: 3rem;
-  color: #c2185b;
-}
+    /* MAIN CARD */
+    #card {
+      display: none;
+      background: white;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 900px;
+      padding: 30px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      animation: zoomIn 1s ease forwards;
+    }
 
-.start-btn {
-  margin-top: 30px;
-  padding: 14px 35px;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  background: #c2185b;
-  color: white;
-}
+    .content {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
 
-/* Zoom effect */
-.zoom {
-  animation: zoomIn 1.2s ease forwards;
-}
+    .photo img {
+      width: 250px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 1.5s ease forwards;
+    }
 
-@keyframes zoomIn {
-  from {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
+    .message {
+      flex: 1;
+      font-size: 16px;
+      line-height: 1.6;
+    }
 
-/* Reveal section */
-.reveal {
-  display: none;
-  padding: 40px;
-}
+    .message b {
+      display: block;
+      margin-top: 15px;
+    }
 
-.content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
-}
+    .kiss-btn {
+      margin-top: 25px;
+      padding: 14px 26px;
+      background: #ff2f6d;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-.photo img {
-  width: 300px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-}
+    /* HEART */
+    #heart {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #ff0033;
+      color: white;
+      font-size: 60px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: zoomIn 1s ease forwards;
+    }
 
-.message {
-  max-width: 500px;
-  background: white;
-  padding: 25px;
-  border-radius: 20px;
-  color: #444;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
+    /* ANIMATIONS */
+    @keyframes zoomIn {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
 
-.message p {
-  line-height: 1.6;
-}
-
-/* Kiss button */
-.kiss-btn {
-  margin-top: 25px;
-  padding: 12px 30px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 25px;
-  background: #e91e63;
-  color: white;
-  cursor: pointer;
-}
-
-/* Heart */
-.heart-container {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.heart {
-  width: 220px;
-  height: 200px;
-  background: red;
-  position: relative;
-  transform: rotate(-45deg);
-  animation: pop 1s ease forwards;
-}
-
-.heart::before,
-.heart::after {
-  content: "";
-  width: 220px;
-  height: 200px;
-  background: red;
-  border-radius: 50%;
-  position: absolute;
-}
-
-.heart::before {
-  top: -110px;
-  left: 0;
-}
-
-.heart::after {
-  left: 110px;
-  top: 0;
-}
-
-.heart-text {
-  position: absolute;
-  transform: rotate(45deg);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-@keyframes pop {
-  from {
-    transform: scale(0) rotate(-45deg);
-  }
-  to {
-    transform: scale(1) rotate(-45deg);
-  }
-}
-</style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- First Screen -->
-<div class="screen" id="startScreen">
-  <h1>🎉 Happy Birthday Janab 🎉</h1>
-  <button class="start-btn" onclick="startBirthday()">Start Your Birthday</button>
-</div>
+  <!-- START SCREEN -->
+  <div id="startScreen">
+    <button id="startBtn">Start Your Birthday 🎉</button>
+  </div>
 
-<!-- Reveal Screen -->
-<div class="reveal zoom" id="revealScreen">
-  <div class="content">
-    <div class="photo">
-      <img src="photo.jpg" alt="Birthday Photo">
-    </div>
+  <!-- MAIN CARD -->
+  <div id="card">
+    <div class="content">
+      <div class="photo">
+        <img src="photo.jpg" alt="Birthday Photo">
+      </div>
 
-    <div class="message">
-      <p>
+      <div class="message">
         May you live a long life. May Allah give you everything you want.
         I wish this year fills your heart with happiness and love.
         Even if I’m not there right now, I’m always here for you.
         I’ll listen to your problems and we’ll solve every one together.
-      </p>
 
-      <p>
+        <br><br>
         Maybe I should thank Allah for giving me such a beautiful friend and love.
-      </p>
 
-      <p>
-        <strong>Your cousin (and someone special)</strong><br>
+        <b>Your cousin (and someone special)</b>
         — Hassaan
-      </p>
 
-      <button class="kiss-btn" onclick="showHeart()">Give him a kiss as a thanks 💋</button>
+        <br>
+        <button class="kiss-btn" onclick="showHeart()">
+          Give him a kiss as a thanks 💋
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Heart Screen -->
-<div class="heart-container" id="heartScreen">
-  <div class="heart">
-    <div class="heart-text">Sumaika</div>
+  <!-- HEART SCREEN -->
+  <div id="heart">
+    ❤️ SUMAIKA ❤️
   </div>
-</div>
 
-<script>
-function startBirthday() {
-  document.getElementById("startScreen").style.display = "none";
-  document.getElementById("revealScreen").style.display = "block";
-}
+  <!-- MUSIC (optional) -->
+  <audio id="song" src="song.mp3"></audio>
 
-function showHeart() {
-  document.getElementById("revealScreen").style.display = "none";
-  document.getElementById("heartScreen").style.display = "flex";
-}
-</script>
+  <script>
+    const startBtn = document.getElementById("startBtn");
+    const startScreen = document.getElementById("startScreen");
+    const card = document.getElementById("card");
+    const song = document.getElementById("song");
+
+    startBtn.onclick = () => {
+      startScreen.style.display = "none";
+      card.style.display = "block";
+      song.play().catch(()=>{});
+    };
+
+    function showHeart() {
+      document.getElementById("heart").style.display = "flex";
+    }
+  </script>
 
 </body>
 </html>
